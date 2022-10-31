@@ -1,0 +1,178 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+  <link rel="stylesheet" href="{% static 'css/Style.css' %}">
+  <link rel="stylesheet" href="{% static 'css/chief-slider.css' %}">
+  <script src="https://kit.fontawesome.com/8210b99a89.js" crossorigin="anonymous"></script>
+</head>
+
+<body>
+  {% if request.user.is_authenticated %}
+  <div class="navbar navbaruser navbargal">
+    <div class="container size">
+      <div class="nvleft">
+        <img src="{% static 'img/logoblack.png' %}" alt="">
+      </div>
+      <div class="nvright">
+        <div class="nvrightinfo">
+
+          <a href="/">
+            <p>Достопримечательности</p>
+          </a>
+          <a href="/pam/">
+            <p>Памятники</p>
+          </a>
+          <a href="/places/dost/">
+            <p>Места</p>
+          </a>
+          <a href="/galery/">
+            <p>Галерея</p>
+          </a>
+          <a href="/news/">
+            <p>Новости</p>
+          </a>
+          <a href="/history/">
+            <p>О нас</p>
+          </a>
+
+          <div class="user">
+            <div class="userav">
+              <img class="avatar" src="{{ request.user.avatar.url }}" alt="">
+              <i class="fas fa-chevron-down"></i>
+            </div>
+            <div class="list">
+              <a href="/account/"><button class="first">Профиль</button></a>
+              <a href="/change/"><button>Изменить</button></a>
+              <a href="/logout/"><button>Выход</button></a>
+            </div>
+          </div>
+        </div>
+
+        <div class="search searchuser">
+          <form method="get">
+            <button class="btns"><i class="fas fa-search"></i></button>
+            <input placeholder="Введите название" type="text" name="title" id="id_title">
+            <button class="btnb">Поиск</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+  {% else %}
+  <div class="navbar navbargal">
+    <div class="container size">
+      <div class="nvleft">
+        <img src="{% static 'img/logoblack.png' %}" alt="">
+      </div>
+      <div class="nvright">
+        <div class="nvrightinfo">
+        <a href="/">
+          <p>Достопримечательности</p>
+        </a>
+        <a href="/pam/">
+          <p>Памятники</p>
+        </a>
+        <a href="/places/dost/">
+          <p>Места</p>
+        </a>
+        <a href="/galery/">
+          <p>Галерея</p>
+        </a>
+        <a href="/news/">
+          <p>Новости</p>
+        </a>
+        <a href="/history/">
+          <p>О нас</p>
+        </a>
+        <div class="login">
+          <div class="loginlogo"> <i class="fas fa-user userlogo"></i> <i class="fas fa-chevron-down"></i>
+          </div>
+          <div class="list">
+            <a href="/login/"><button class="first">Вход</button></a>
+            <a href="/register/"><button>Регистрация</button></a>
+            <a href="/admin/"><button>Администратор</button></a>
+          </div>
+        </div>
+      </div>
+        <div class="search">
+          <form action="">
+            <button class="btns"><i class="fas fa-search"></i></button>
+            <input placeholder="Введите название" type="text">
+            <button class="btnb">Поиск</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+  {% endif %}
+
+  <div class="galery">
+    <div class="container size">
+
+      <div class="gallerychoice">
+        <form action="/places/dost/" class='bbtn'>
+          <button class="btngc"> Достопримечательности <i class="fas fa-landmark"></i></button>
+        </form>
+
+        <form action="/places/pam/" class='bbtn'>
+          <button class="btngc"> Памятники <i class="fas fa-monument"></i></button>
+        </form>
+      </div>
+
+      <div class="choice">
+        {% if count > 0 %}
+          {% for place in places %}
+          <div class="choiceitem">
+            <img src="{{ place.image_1.url }}" alt="">
+            <div class="content">
+              <p>{{ place.name}}</p>
+              <span class="mt-20">
+                {{ place.title }}
+              </span>
+             
+            </div>
+            <a href="{{ place.get_absolute_url }}"> <button class="mb-20 btnb"><i
+              class="fas fa-arrow-right"></i></button></a>
+          </div>
+          {% endfor %}
+        {% else %}
+          <p>Ничего не найдено</p>
+        {% endif %}
+      </div>
+
+    </div>
+  </div>
+
+
+
+  <div class="about aboutgalery ">
+    <div class="aboutinfo abountinfocount">
+      <div class="counttext">
+        <div class="countblock">
+          <i class="fas fa-landmark"></i>
+          <h4> Количество достопримечательностей</h4>
+          <p>{{ dost_qt }}</p>
+        </div>
+        <div class="countblock">
+          <i class="fas fa-monument"></i>
+          <h4> Количество памятников</h4>
+          <p>{{ pam_qt }}</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="darkaboutimage">
+      <div class="aboutimage">
+      </div>
+    </div>
+  </div>
+
+  {% include 'footer.html' %}
+</body>
+
+</html>

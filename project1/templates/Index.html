@@ -1,0 +1,148 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+  <link rel="stylesheet" href="{% static 'css/chief-slider.css' %}">
+  <link rel="stylesheet" href="{% static 'css/Style.css' %}">
+  <script defer src="{% static 'js/chief-slider.dev.js' %}"></script>
+
+  <script src="https://kit.fontawesome.com/8210b99a89.js" crossorigin="anonymous"></script>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      new ChiefSlider('.slider', {
+        loop: true,
+        autoplay: false,
+        interval: 3000,
+        swape: true
+      });
+    });
+  </script>
+</head>
+
+<body>
+
+  {% include 'header.html' %}
+
+  <div class="xiy">
+    <div class="darkbanner">
+      <div class="banner">
+        <div class="textbanner">
+          <h1 class="mb-15">Достопримечательности <br> Могилева</h1>
+          <p>Посмотреть полный список можно в галерее</p>
+          <a href="/places/dost/"> <button class="btnw">Подробнее</button> </a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="monument">
+    <div class="container size">
+      <h3>Список достопримечательностей</h3>
+      <div class="xui"></div>
+      <div class="monumentgalery">
+        {% for monument in monuments %}
+        <div class="monumentitems">
+          <div class="monumentimage" style='background-image: url({{monument.image_1.url}});'>
+            <div class="monumentimagedark">
+            </div>
+            <div class="monumentinfo">
+              <a class="atop" href="{{monument.get_absolute_url}}"> <i class="fas fa-search"></i></a>
+              <a class="aright" href="{{monument.get_absolute_url}}">
+                <h3>{{monument.name}}</h3>
+              </a>
+            </div>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+  
+    </div>
+  </div>
+  <div class="about aboutindex">
+    <div class="aboutinfo">
+      <h3>О библиотеке</h3>
+      <p> {{about.title_about}}</p>
+      <span> {{about.text_about}}</span>
+    </div>
+  
+    <div class="darkaboutimage">
+      <div class="aboutimage"  style="background-image: url({{ about.about_image.url }});">
+      </div>
+    </div>
+  </div>
+  <div class="more">
+    <div class="container size">
+      <div class="textmorehystory">
+        <h3 class="mb-15">Культурное наследие</h3>
+        <p class="">Культурное наследие – это очень важный элемент жизни человека. Цель разработки - ознакомление с
+          достопримечательностями и памятники, что является очень важной частью культуры человека. Сайт был разработан
+          при поддержке центральной <br> библиотеки города Могилева. </p>
+        <a href="/history/"><button class="btnb">Подробнее</button></a>
+      </div>
+    </div>
+  </div>
+  <div class="about aboutindex aboutcount">
+    <div class="aboutinfo abountinfocount">
+      <div class="counttext">
+        <div class="countblock">
+          <i class="fas fa-landmark"></i>
+          <h4> Количество достопримечательностей</h4>
+          <p>{{ dost_qt }}</p>
+        </div>
+        <div class="countblock">
+          <i class="fas fa-monument"></i>
+          <h4> Количество памятников</h4>
+          <p>{{ pam_qt }}</p>
+  
+        </div>
+      </div>
+    </div>
+  
+    <div class="darkaboutimage">
+      <div class="aboutimage">
+      </div>
+    </div>
+  </div>
+  <!-- <iframe src="https://yandex.ru/map-widget/v1/?um=constructor%3A8d5607fc5207d0108bb31eff3dcafb396a4adc327e0ab09695203c281ad84417&amp;source=constructor" width="100%" height="527" frameborder="0"></iframe> -->
+  <div class="map">
+    <iframe src="https://www.google.com/maps/d/u/0/embed?mid=1Fb3VOOnOkbrABRO46WBxSUq9SJxUi_7g" width="100%"
+      height="800"></iframe>
+  </div>
+  <div class="slider">
+    <div class="slider__wrapper">
+      <div class="slider__items">
+  
+        {% for place in places %}
+        <div class="slider__item">
+          <div class="dark_slider">
+            <img class="scale" src="{{ place.image_1.url }}" alt="">
+            <div class="textbanner">
+              <h1 class="mb-15"> {{ place.name }} </h1>
+              <p>{{ place.title }}</p>
+              <a href="{{place.get_absolute_url}}"> <button class="btnw">Подробнее</button> </a>
+            </div>
+          </div>
+        </div>
+        {% endfor %}
+  
+      </div>
+    </div>
+    <a href="#" class="slider__control" data-slide="prev"></a>
+    <a href="#" class="slider__control" data-slide="next"></a>
+    <ol class="slider__indicators">
+      <li data-slide-to="0"></li>
+      <li data-slide-to="1"></li>
+      <li data-slide-to="2"></li>
+      <li data-slide-to="3"></li>
+      <li data-slide-to="4"></li>
+  </ol>
+  
+  </div>
+  {% include 'footer.html' %}
+</body>
+
+</html>

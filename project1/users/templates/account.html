@@ -1,0 +1,40 @@
+{% extends 'users/base.html' %}
+{% load static %}
+{% block content %}
+
+	<div class="limiter">
+		<div class="container-login100">
+			<div class="wrap-login100 p-l-85 p-r-85 p-t-55 p-b-55 account">
+				<div class="avatar">
+				    <img src="img/dram.jpg" alt="">
+				</div>
+					<span class="txt4 m-b-20 m-t-20">
+						О пользователе
+					</span>
+
+					<span class="txt1 p-b-11">
+						Имя:  <p>{{ user.name }}</p>
+					</span>
+					<span class="txt1 p-b-11">
+						Фамилия: <p>{{ user.surname }}</p>
+					</span>
+					<span class="txt1 p-b-11">
+						Email: <p>{{ user.email }}</p>
+					</span>
+
+						 <a class="p-b-11"  href="/account/change"> Изменить данные</a>
+						 <div class="container-login100-form-btn">
+						<button class="login100-form-btn">
+							Выйти из аккаунта
+						</button>
+					</div>
+					</div>
+            </div>
+
+    
+				
+			
+			</div>
+	
+	<div id="dropDownSelect1"></div>
+{% endblock %}

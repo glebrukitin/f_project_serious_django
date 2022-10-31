@@ -1,0 +1,91 @@
+{% extends 'places/base.html' %}
+{% load static %}
+{% block content %}
+
+<div class="showplace ">
+    <div class="container size">
+        <div class="name">
+            <h1>{{ place.name }}</h1>
+        </div>
+        <div class="imginfo">
+            <div class="imgleft">
+                <img class="imgl" src="{{place.image_1.url}}" alt="">
+            </div>
+            <div class="imgright">
+                <img class="imgrf" src="{{place.image_2.url}}" alt="">
+                <img class="imgrs" src="{{place.image_3.url}}" alt="">
+            </div>
+        </div>
+
+
+    </div>
+</div>
+
+<div class="slider2">
+    <div class="slider__wrapper">
+        <div class="slider__items">
+
+            <div class="slider__item slider__itemshow">
+                <div class="container size pp-50">
+                    <i class="fas fa-history mb-15 bxbr"></i>
+                    <p>{{place.text_1}}
+                        <br>
+                    </p>
+                </div>
+            </div>
+
+            <div class="slider__item slider__itemshow">
+                <div class="container size pp-50">
+                    <i class="fas fa-book mb-15"></i>
+                    <p>{{place.text_2}}</p>
+                </div>
+            </div>
+            <div class="slider__item slider__itemshow">
+                <div class="container size pp-50">
+                    <i class="fas fa-file-alt mb-15"></i>
+                    <p>{{place.text_3}}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <a href="#" class="slider__control" data-slide="prev"></a>
+    <a href="#" class="slider__control" data-slide="next"></a>
+    <ol class="slider__indicators">
+        <li data-slide-to="0"></li>
+        <li data-slide-to="1"></li>
+        <li data-slide-to="2"></li>
+    </ol>
+</div>
+
+<div class="reccal">
+    <div class="container size">
+        <form action="">
+            <h3>Оставить отзыв</h3>
+            <textarea name="" id="" cols="30" rows="10" placeholder="Ваши впечатления"></textarea>
+            <a href=""> <button class="btnc">
+                    Отправить
+                </button> </a>
+        </form>
+    </div>
+</div>
+
+<div class="commentnews testimonial ">
+    <div class="container size">
+        <h2> {{ review_qt }} Отзыва</h2>
+        {% for review in reviews %}
+        <div class="commnewsitems">
+            <img src="{{ review.user.avatar.url }}" alt="">
+            <div class="commentnewstext">
+                <h6>{{review.user.name}}</h6>
+                <span>{{ review.date_created }}</span>
+                <p>{{ review.text }}</p>
+
+            </div>
+        </div>
+        {% endfor %}
+
+
+
+    </div>
+</div>
+{% endblock %}

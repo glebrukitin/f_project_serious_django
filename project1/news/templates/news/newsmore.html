@@ -1,0 +1,72 @@
+{% extends 'news/base.html' %}
+{% load static %}
+{% block content %}
+    <div class="newsmore">
+        <div class="container size">
+            <div class="newsmoreleft">
+                <div class="newsitimg"> <img src="{{ post.image.url }}" alt=""></div>
+                <h1>{{ post.title}}</h1>
+                <p>{{ post.text_1 }}</p>
+                <div class="genmessage">
+                    {{ post.quote }}
+                </div>
+                <p> {{ post.text_2 }}</p>
+                <div class="commentinfo">
+                    <Span class="spancom"> Комменнтариев: <p>{{ comments_qt}}</p></Span>
+
+                </div>
+                <div class="commentnews ">
+                    <h2> {{ comments_qt }} Комментария под данной новостью</h2>
+
+                    {% for comment in comments %}
+                    <div class="commnewsitems">
+                        <img src="{{ comment.user.avatar.url }}" alt="">
+                        <div class="commentnewstext">
+                            <h6>{{comment.user.name}}</h6>
+                            <span>{{ comment.date_created }}</span>
+                            <p>{{ comment.text }}</p>
+                            <a href="">Ответить</a>
+                        </div>
+                    </div>
+                    {% endfor %}
+
+                    {% for subcomment in comments %}
+                    <div class="commnewsitems commentnewsitemsrep">
+                        <img src="{{ subcomment.user.avatar.url }}" alt="">
+                        <div class="commentnewstext">
+                            <h6>{{subcomment.user.name}}</h6>
+                            <span>{{ subcomment.date_created }}</span>
+                            <p>{{subcomment.parent_comment.user.name}}, {{ comment.text }}</p>
+                            <a href="">Ответить</a>
+                        </div>
+                    </div>
+                    {% endfor %}
+
+                    <div class="commentpost">
+                        <h3> Отправить ваш комментарий</h3>
+                        <form action="">
+                            <div class="bot">
+                                <textarea placeholder="Комментарий" name="" id="" cols="30" rows="10"></textarea>
+                            </div>
+                            <button class="btnb">Опубликовать ваш комментарий</button>
+                        </form>
+                    </div>
+                </div>
+
+            </div>
+            <div class="newsmoreright">
+
+
+                <div class="popular fon">
+                    <h3>Популярные новости</h3>
+                    {% for popular in popular_news %}
+                    <div class="puplaritem">
+                        <a href="{{popular.get_absolute_url}}"><i class="fas fa-chevron-right"></i>{{ popular.title}}</a>
+                        <p> Опубликовано {{ popular.date_created }}</p>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

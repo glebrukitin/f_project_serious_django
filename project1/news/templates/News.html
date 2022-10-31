@@ -1,0 +1,42 @@
+{% extends 'news/base.html' %}
+{% load static %}
+{% block content %}
+<div class="newsgrid">
+    <div class="container size">
+        {% for post in news %}
+        <div class="newsitems">
+            <div class="newsitimg"> <img src="img/lev.jpg" alt=""></div>
+            <div class="newsitext">
+                <h3>{{ post.title }}</h3>
+                <p>{{ post.text_1|slice:":50" }} </p>
+            </div>
+            <a href="newsmore.html"><button class="btn">Узнать больше</button> </a>
+        </div>
+        {% endfor %}
+
+        <div class="newsnav">
+            <div class="newsnavitems bordleft">
+                <i class="fas fa-chevron-left"></i>
+            </div>
+            <div class="newsnavitems">
+                <p>1</p>
+            </div>
+            <div class="newsnavitems">
+                <p>2</p>
+            </div>
+            <div class="newsnavitems">
+                <p>3</p>
+            </div>
+            <div class="newsnavitems">
+                <p>4</p>
+            </div>
+            <div class="newsnavitems">
+                <p>5</p>
+            </div>
+            <div class="newsnavitems bordright">
+                <i class="fas fa-chevron-right"></i>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,80 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <link rel="stylesheet" href="{% static 'css/Style.css' %}">
+    <script src="https://kit.fontawesome.com/8210b99a89.js" crossorigin="anonymous"></script>
+</head>
+
+<body>
+    {% include 'header.html' %}
+
+    <div class="newsmore">
+        <div class="container size">
+            <div class="newsmoreleft">
+                <div class="newsitimg newsmoreimg"> <img src="{{ post.image.url }}" alt=""></div>
+                <h1>{{ post.title}}</h1>
+                <p>{{ post.text_1 }}</p>
+                <div class="genmessage">
+                    {{ post.quote }}
+                </div>
+                <p> {{ post.text_2 }}</p>
+                <div class="commentinfo">
+                    <Span class="spancom"> Комменнтариев: <p>{{ comments_qt}}</p></Span>
+
+                </div>
+                <div class="commentnews ">
+                    <h2> {{ comments_qt }} Комментариев под данной новостью</h2>
+
+                    {% for comment in comments %}
+                    <div class="commnewsitems">
+                        <img src="{{ comment.user.avatar.url }}" alt="">
+                        <div class="commentnewstext">
+                            <h6>{{comment.user.firstname}}</h6>
+                            <span>{{ comment.date_created }}</span>
+                            <p>{{ comment.text }}</p>
+                        </div>
+                    </div>
+                    {% endfor %}
+                    
+                    {% if request.user %}
+                    <div class="commentpost">
+                        <h3> Отправить ваш комментарий</h3>
+                        <form id="contactForm" method="post">
+                            {% csrf_token %}
+                            <div class="bot">
+                                <textarea placeholder="Комментарий" name="text" cols="40" rows="10" required="" id="id_text"></textarea>
+                            </div>
+                            <button class="btnb">Опубликовать ваш комментарий</button>
+                        </form>
+                    </div>
+                    {% else %}
+                    <h3>Комментировать могут только авторизированные пользователи</h3>
+                    {% endif %}
+                </div>
+
+            </div>
+            <div class="newsmoreright">
+
+
+                <div class="popular fon">
+                    <h3>Популярные новости</h3>
+                    {% for popular in popular_news %}
+                    <div class="puplaritem">
+                        <a href="{{popular.get_absolute_url}}"><i class="fas fa-chevron-right"></i>{{ popular.title}}</a>
+                        <p> Опубликовано {{ popular.date_created }}</p>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {% include 'footer.html' %}
+</body>
+
+</html>

@@ -1,0 +1,119 @@
+{% extends 'about/base.html' %}
+{% load static %}
+{% block content %}
+<div class="about">
+    <div class="aboutinfo">
+        <h3>О библиотеке</h3>
+        <p> {{ about.title_about }}</p>
+        <span> {{ about.text_about }}</span>
+    </div>
+    <div class="darkaboutimage">
+        <div class="aboutimage">
+        </div>
+    </div>
+</div>
+
+<div class="monument monumenthistory">
+    <div class="container size">
+        <h3 class="">История библиотеки</h3>
+        <div class="line linehistory"></div>
+        <div class="monumentgalery">
+            {% for url in about.get_image_urls %}
+            <div class="monumentitems">
+                <div class="monumentimage" style="background-image: url({{ url }});">
+                    <div class="monumentimagedark">
+                    </div>
+                    <div class="monumentinfo">
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+
+    </div>
+</div>
+
+<div class="slider2">
+    <div class="slider__wrapper">
+        <div class="slider__items">
+
+            <div class="slider__item slider__itemshow">
+                <div class="container size pp-50">
+                    <i class="fas fa-history mb-15 bxbr"></i>
+                    <p>
+                        {{ about.text_1}}
+                    </p>
+                </div>
+            </div>
+
+            <div class="slider__item slider__itemshow">
+                <div class="container size pp-50">
+                    <i class="fas fa-book mb-15"></i>
+                    <p>
+                        {{ about.text_2}}
+
+                    </p>
+                </div>
+            </div>
+            <div class="slider__item slider__itemshow">
+                <div class="container size pp-50">
+                    <i class="fas fa-file-alt mb-15"></i>
+                    <p>
+                        {{ about.text_3}}
+
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <a href="#" class="slider__control" data-slide="prev"></a>
+    <a href="#" class="slider__control" data-slide="next"></a>
+    <ol class="slider__indicators">
+        <li data-slide-to="0"></li>
+        <li data-slide-to="1"></li>
+        <li data-slide-to="2"></li>
+    </ol>
+</div>
+
+<div class="aboutcontact">
+    <div class="container size">
+        <h3>Как связаться с библиотекой</h3>
+        <div class="aboutcontacttext">
+            <div class="aboutcontactinfo">
+                <div class="aboutcontactinfoitem ">
+                    <div class="left">
+                        <i class="fas fa-phone-alt"></i>
+                    </div>
+                    <div class="right">
+                        <h4>Телефон</h4>
+                        <p>74-00-32</p>
+                    </div>
+                </div>
+                <div class="aboutcontactinfoitem">
+                    <div class="left">
+                        <i class="fas fa-envelope"></i>
+                    </div>
+                    <div class="right">
+                        <h4>Email</h4>
+                        <p> csgpb@tut.by</p>
+                    </div>
+                </div>
+                <div class="aboutcontactinfoitem">
+                    <div class="left">
+                        <i class="fas fa-home"></i>
+                    </div>
+                    <div class="right">
+                        <h4>Адресс</h4>
+                        <p>712030, г. Могилев, ул. Первомайская, 30</p>
+                    </div>
+                </div>
+            </div>
+            <div class="maphistory">
+                <iframe c src="https://www.google.com/maps/d/u/0/embed?mid=13pJ-15jNxtLiarKyplH-HIcAI1Kxsirh"
+                    width="100%" height="400"></iframe>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

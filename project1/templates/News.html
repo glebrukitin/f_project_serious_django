@@ -1,0 +1,65 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <link rel="stylesheet" href="{% static 'css/Style.css' %}">
+    <script src="https://kit.fontawesome.com/8210b99a89.js" crossorigin="anonymous"></script>
+</head>
+
+<body>
+
+    {% include 'header.html' %}
+
+    <div class="newsgrid">
+        <div class="container size">
+            {% for post in page_obj %}
+            <div class="newsitems">
+                <div class="newsitimg"> <img src="{{ post.image.url }}" alt=""></div>
+                <div class="newsitext">
+                    <h3>{{ post.title }}</h3>
+                 
+
+                </div>
+                <a href="{{ post.get_absolute_url }}"><button class="btn">Узнать больше</button> </a>
+
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+    
+    <div class="newsnav newsnavgalery">
+        <span class="step-links kkk">
+            {% if page_obj.has_previous %}
+            <a href="?page={{ page_obj.previous_page_number }}">
+                <div class="newsnavitems1 bordleft">
+                    <i class="fas fa-chevron-left" aria-hidden="true"></i>
+                </div>
+            </a>
+            {% endif %}
+
+            <span class="current">
+                <div class="newsnavitems1">
+                    <p>{{ page_obj.number }}</p>
+                </div>
+
+            </span>
+
+            {% if page_obj.has_next %}
+            <a href="?page={{ page_obj.next_page_number }}">
+                <div class="newsnavitems1 bordright">
+                    <i class="fas fa-chevron-right" aria-hidden="true"></i>
+                </div>
+            </a>
+            {% endif %}
+        </span>
+    </div>
+
+    {% include 'footer.html' %}
+
+</body>
+
+</html>

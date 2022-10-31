@@ -1,0 +1,115 @@
+{% extends 'about/base.html' %}
+{% load static %}
+{% block content %}
+<div class="xiy">
+  <div class="darkbanner">
+    <div class="banner">
+      <div class="textbanner">
+        <h1 class="mb-15">Достопримечательности <br> Могилева</h1>
+        <p>Посмотреть полный список можно в галерее</p>
+        <a href="Showplace.html"> <button class="btnw">Подробнее</button> </a>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="monument">
+  <div class="container size">
+    <h3>Список достопримечательностей</h3>
+    <div class="xui"></div>
+    <div class="monumentgalery">
+      {% for monument in monuments %}
+      <div class="monumentitems">
+        <div class="monumentimage" style='background-image: url({{monument.image_1.url}});'>
+          <div class="monumentimagedark">
+          </div>
+          <div class="monumentinfo">
+            <a class="atop" href="Showplace.html"> <i class="fas fa-search"></i></a>
+            <a class="aright" href="Showplace.html">
+              <h3>{{monument.name}}</h3>
+            </a>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+
+  </div>
+</div>
+<div class="about aboutindex">
+  <div class="aboutinfo">
+    <h3>О библиотеке</h3>
+    <p> {{about.title_about}}</p>
+    <span> {{about.text_about}}</span>
+  </div>
+
+  <div class="darkaboutimage">
+    <div class="aboutimage">
+    </div>
+  </div>
+</div>
+<div class="more">
+  <div class="container size">
+    <div class="textmorehystory">
+      <h3 class="mb-15">Культурное наследие</h3>
+      <p class="">Культурное наследие – это очень важный элемент жизни человека. Цель разработки - ознакомление с
+        достопримечательностями и памятники, что является очень важной частью культуры человека. Сайт был разработан
+        при поддержке центральной <br> библиотеки города Могилева. </p>
+      <a href="history.html"><button class="btnb">Подробнее</button></a>
+    </div>
+  </div>
+</div>
+
+<div class="about aboutindex aboutcount">
+  <div class="aboutinfo abountinfocount">
+    <div class="counttext">
+      <div class="countblock">
+        <i class="fas fa-landmark"></i>
+        <h4> Количество достопримечательностей</h4>
+        <p>{{ dost_qt }}</p>
+      </div>
+      <div class="countblock">
+        <i class="fas fa-monument"></i>
+        <h4> Количество памятников</h4>
+        <p>{{ pam_qt }}</p>
+
+      </div>
+    </div>
+  </div>
+
+  <div class="darkaboutimage">
+    <div class="aboutimage">
+    </div>
+  </div>
+</div>
+
+<!-- <iframe src="https://yandex.ru/map-widget/v1/?um=constructor%3A8d5607fc5207d0108bb31eff3dcafb396a4adc327e0ab09695203c281ad84417&amp;source=constructor" width="100%" height="527" frameborder="0"></iframe> -->
+<div class="map">
+  <iframe src="https://www.google.com/maps/d/u/0/embed?mid=1Fb3VOOnOkbrABRO46WBxSUq9SJxUi_7g" width="100%"
+    height="800"></iframe>
+</div>
+
+<div class="slider">
+  <div class="slider__wrapper">
+    <div class="slider__items">
+
+      {% for place in places %}
+      <div class="slider__item">
+        <div class="dark_slider">
+          <img class="scale" src="{{ place.image_1 }}" alt="">
+          <div class="textbanner">
+            <h1 class="mb-15"> {{ place.name }} </h1>
+            <p>{{ place.title }}</p>
+            <a href="Showplace.html"> <button class="btnw">Подробнее</button> </a>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+
+    </div>
+  </div>
+  <a href="#" class="slider__control" data-slide="prev"></a>
+  <a href="#" class="slider__control" data-slide="next"></a>
+
+</div>
+
+{% endblock %}

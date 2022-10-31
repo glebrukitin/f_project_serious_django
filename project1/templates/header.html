@@ -1,0 +1,82 @@
+{% load static %}
+
+{% if request.user.is_authenticated %}
+<div class="navbar navbaruser">
+    <div class="container size">
+        <div class="nvleft">
+            <img src="{% static 'img/logoblack.png' %}" alt="">
+        </div>
+        <div class="nvright">
+
+            <a href="/">
+                <p>Достопримечательности</p>
+            </a>
+            <a href="/pam/">
+                <p>Памятники</p>
+            </a>
+            <a href="/places/dost/">
+                <p>Места</p>
+            </a>
+            <a href="/galery/">
+                <p>Галерея</p>
+            </a>
+            <a href="/news/">
+                <p>Новости</p>
+            </a>
+            <a href="/history/">
+                <p>О нас</p>
+            </a>
+            <div class="user">
+                <div class="userav">
+                    <img class="avatar" src="{{ request.user.avatar.url }}" alt="">
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="list">
+                    <a href="/account/"><button class="first">Профиль</button></a>
+                    <a href="/change/"><button>Изменить</button></a>
+                    <a href="/logout/"><button>Выход</button></a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% else %}
+<div class="navbar">
+    <div class="container size">
+        <div class="nvleft">
+            <img src="{% static 'img/logoblack.png' %}" alt="">
+        </div>
+        <div class="nvright">
+
+            <a href="/">
+                <p>Достопримечательности</p>
+            </a>
+            <a href="/pam/">
+                <p>Памятники</p>
+            </a>
+            <a href="/places/dost/">
+                <p>Места</p>
+            </a>
+            <a href="/galery/">
+                <p>Галерея</p>
+            </a>
+            <a href="/news/">
+                <p>Новости</p>
+            </a>
+            <a href="/history/">
+                <p>О нас</p>
+            </a>
+            <div class="login">
+                <div class="loginlogo"> <i class="fas fa-user userlogo"></i> <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="list">
+                    <a href="/login/"><button class="first">Вход</button></a>
+                    <a href="/register/"><button>Регистрация</button></a>
+                    <a href="/admin/"><button>Администратор</button></a>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+{% endif %}
